@@ -50,5 +50,15 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  bindFreeLengendTap: function(e) {
+    console.log('tapped');
+    wx.navigateTo({
+      url: '../legends/legends'
+    })
+  },
+  bindBattleListTap: function(e) {
+    console.log(e);
+    console.log('battle');
   }
 })
