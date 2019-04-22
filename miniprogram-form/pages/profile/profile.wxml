@@ -1,0 +1,59 @@
+<!-- pages/profile/profile.wxml -->
+<!-- <text>pages/profile/profile.wxml</text> -->
+<view class="page-body">
+  <!-- profile -->
+  <form action="" bindsubmit="formSubmit">
+    <!-- 姓名 -->
+    <view class="section">
+      <view class="section_title">姓名</view>
+      <input type="text" name="name" focus placeholder="张三" />
+    </view>
+    <!-- 单身 -->
+    <view class="section">
+      <view class="section_title">单身:{{notSingle ? '否': '是'}}</view>
+      <switch name="switch" bindchange="singleChange" />
+    </view>
+    <!-- 性别 -->
+    <view class="section">
+      <view class="section_title">性别</view>
+      <radio-group name="sex">
+        <label>
+          <radio value="boy" />
+          男
+        </label>
+        <label>
+          <radio value="girl" />
+          女
+        </label>
+      </radio-group>
+    </view>
+    <!-- 爱好 -->
+    <view class="section">
+      <view class="section_title">爱好</view>
+      <checkbox-group name="hobby">
+        <label>
+          <checkbox value="girls" />女生
+        </label>
+        <label>
+          <checkbox value="Godgirl" />女神
+        </label>
+        <label>
+          <checkbox value="boys" />男生
+        </label>
+        <label>
+          <checkbox value="Godboy" />男神
+        </label>
+      </checkbox-group>
+    </view>
+    <view class="section btn-area">
+      <button type="primary" form-type="submit">提交</button>
+    </view>
+  </form>
+  <!-- wx:for-item="item" -->
+  <view wx:for="{{formData}}" class="formLists">
+    <text>{{item.name}}</text>
+    <text>{{item.switch}}</text>
+    <text>{{item.sex}}</text>
+    <text>{{item.hobby}}</text>
+  </view>
+</view>
