@@ -1,2 +1,63 @@
-<!--pages/main/index.wxml-->
-<text>pages/main/index.wxml</text>
+<!-- pages/main/index.wxml -->
+<view class="container">
+  <view class="header">
+    <view class="header_hd" bindtap="goLocaltion">
+      <text>{{city}}</text>
+      <view class="downtips"></view>
+    </view>
+    <view class="header_bd">
+      <view class="header_bd-hot header_bd-btn">正在上映</view>
+      <view class="header_bd-waiting header_bd-btn">即将上映</view>
+    </view>
+    <view class="header_ft">
+      <image src="../../images/ser.png"></image>
+    </view>
+  </view>
+  <!-- swiper -->
+  <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="movie-lists" wx:for="{{items}}" wx:key="{{item}}">
+    <view class="flex item" hover-class="gray_hover" hover-start-time="100">
+      <!-- 电影图片 -->
+      <view class="item_left">
+        <image src="{{item.imgUrl}}" alt="" />
+      </view>
+      <!-- 电影描述 -->
+      <view class="item_middle">
+        <!-- 电影title -->
+        <view class="flex_auto">
+          <text class="title">{{item.name}}</text>
+        </view>
+        <!-- 观看人数 -->
+        <view>
+          <view class="item_grade">
+            <!-- wx:if="{{item == 0} -->
+            <text class="score">{{item.isShow == 0 ?  item.wantSee : item.grade}}<text style="font-size:12px;">{{item.isShow == 0 ? "人想看" : "评分"}}</text>
+            </text>
+          </view>
+        </view>
+        <!-- 主演 -->
+        <view>
+          <text class="actor font-desc">主演:{{item.actor}}</text>
+        </view>
+        <!-- 场次 -->
+        <view>
+          <text class="desc font-desc">
+            今天{{item.showInfo.cinema}}家影院放映{{item.showInfo.times}}场
+          </text>
+        </view>
+      </view>
+      <!-- 购票 -->
+      <view class="item_right">
+        <view>
+          <text class="buy" style="background-color:{{item.isShow == 0 ? '#52b0eb' : '#ef4238'}}">{{item.isShow == 1 ? "购票":"预售"}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
