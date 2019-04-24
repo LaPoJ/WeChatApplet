@@ -1,2 +1,2 @@
 <!--pages/mine/index.wxml-->
-<text>pages/mine/index.wxml</text>
+<view class="container">我的</view>
