@@ -10,7 +10,7 @@
     "navigationBarTitleText": "旅梦开发团",
     "navigationBarTextStyle": "white"
   },
-  "tabBar":{
+  "tabBar": {
     "color": "#515151",
     "backgroundColor": "#fff",
     "list": [
@@ -19,17 +19,20 @@
         "text": "首页",
         "iconPath": "images/shouye.png",
         "selectedIconPath": "images/hover-shouye.png"
-      },{
+      },
+      {
         "pagePath": "pages/lesson/index",
         "text": "课程",
         "iconPath": "images/class.png",
         "selectedIconPath": "images/hover-class.png"
-      },{
+      },
+      {
         "pagePath": "pages/mine/index",
         "text": "我的",
         "iconPath": "images/mine.png",
         "selectedIconPath": "images/hover-mine.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
