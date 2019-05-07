@@ -1,0 +1,5 @@
+<!-- <text>miniprogram/pages/index/index.wxml</text> -->
+<block wx:for="{{products}}" >
+  <van-card price="{{item.view}}" desc="{{item.color}}" title="{{item.title}}" thumb="{{item.image}}" data-id="{{item._id}}" bindtap="click">
+  </van-card>
+</block>
