@@ -1,0 +1,25 @@
+<view>
+  <!-- <text>pages/index/index.wxml</text>
+  <br/> -->
+  <!-- <view><i class="icon thumb {{thumb}}" bindtap="ThumbUp"></i></view> -->
+  <!-- <view><i class="icon thumb {{iconThumbDown}}" bindtap="ThumbDown"></i></view> -->
+  <!-- <view><i class="icon heart {{heart}}" bindtap="toLove" /></view>
+  <view><i class="icon chat {{chat}}" bindtap="" /></view>
+  <view><i class="icon chatOne {{chatOne}}" bindtap="" /></view>
+  <view><i class="icon chatTwo {{chatTwo}}" bindtap="" /></view>
+  <view><i class="icon chatMore {{chatMore}}" bindtap="" /></view>
+  <view><i class="icon comment {{comment}}" bindtap="" /></view>
+  <view><i class="icon share {{share}}" bindtap="" /></view>
+  <view><i class="icon star {{star}}" bindtap="" /></view> -->
+  <view>
+    <!-- <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-fenxiang"></use>
+    </svg> -->
+    <text class="icon icon-fenxiang"></text>
+  </view>
+  <view>
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-pingfenwijioaxing"></use>
+    </svg>
+  </view>
+</view>
