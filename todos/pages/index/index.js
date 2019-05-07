@@ -1,51 +1,78 @@
-//index.js
-//获取应用实例
-const app = getApp()
-
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    userInfo: {},
+    todos: [],
+    addShow: false,
+    addText: '',
+    focus: false,
+    status: 1
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  showStatus: function(e){
+    var status = e.currentTarget.dataset.status
+    if(status == this.data.status){
+      returnv
+    }
+    this.setData({
+      status: status
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+  setInput:function (e) {
+    console.log(e);
+    this.setData({
+      addText: e.detail.value
+    })
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+  addTodo:function () {
+    //1. 检测是否有输入
+    if (this.data.addTex) {
+      wx.showToast({
+        title: "请输入Todo",
+        duration: 1000,
+        icon: 'none'
+      })
+      return ;
+    }
+    // 2. todo push
+    // let todos = this.data.todos
+    // todos.push({
+    //   title: this.data.addText,
+    //   id: new Date().getTime(),
+    //   status:0
+    // })
+    // 3. 关闭表单
+    this.setData({
+      todos: [
+        {
+          title: this.data.addText,
+          id: new Date().getTime(),
+          status: 0
+        },
+        ...this.data.todos
+      ],
+      addShow: false,
+      focus: false,
+      addText: ''
+    })
+    console.log(this.data);
+
+  },
+  addTodoShow: function () {
+    this.setData({
+      addShow: true,
+      focus:true
+    })
+  },
+  addTodoHide: function () {
+    this.setData({
+      addShow: false,
+      focus: false
+    });
+  },
+  getUserInfo: function (e) {
+    console.log(e);
+    // this.data.userInfo = e.detail.userInfo;
+    // this.data.hasUserInfo = true;
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
