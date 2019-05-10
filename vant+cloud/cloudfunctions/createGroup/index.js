@@ -11,5 +11,14 @@ exports.main = async (event, context) => {
   // const wxContext = cloud.getWXContext()
   const userInfo = event.userInfo
 
-  return await
+  return await db.collection('group').add({
+    data: {
+      name: event.groupName,
+      createBy: userInfo.openId,
+      createTime: new Date(),
+      deleted: false,
+      updateTime: new Date()
+    }
+  })
+
 }

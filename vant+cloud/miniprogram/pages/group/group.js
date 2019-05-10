@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    gorupList: []
   },
 
   /**
@@ -26,7 +26,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    wx.showNavigationBarLoadig()
+    wx.cloud.callFunction({
+      name: 'getGroup',
+      data:{},
+      success(res){
+        that.setData({
+          gorupList: res.result
+        })
+      },
+      fail(error){
+        console.log(error);
+      },
+      complete(){
+        wx.hideNavigationBarLoading()
+      }
+    })
   },
 
   /**

@@ -30,7 +30,7 @@ Page({
       })
     }, 500);
   },
-  creatGroup(){
+  creatGroup(event){
     let that = this
     if (that.data.groupName === '') {
       Notify({
@@ -42,7 +42,42 @@ Page({
       that.selectComponent('#newGroupModal').stopLoading()
       return
     }else{
-      
+      wx.cloud.callFunction({
+        name: 'createGroup',
+        data: {
+          groupName: that.data.groupName
+        },
+        success(res){
+          console.log(res);
+
+          that.setData({
+            newGroupModal: false
+          })
+
+          setTimeout(() => {
+            wx.showToast({
+              title: '创建成功',
+              icon: 'success'
+            })
+          }, 500);
+
+          setTimeout(() => {
+            that.setData({
+              groupName: ''
+            })
+          }, 500);
+
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/group/group'
+            })
+          }, 1000);
+
+        },
+        fail(error){
+          console.log(error);
+        }
+      })
     }
   },
   /**
