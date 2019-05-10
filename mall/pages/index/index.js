@@ -1,54 +1,43 @@
-//index.js
-//获取应用实例
-const app = getApp()
+const WXAPI = require('../../wxapi/main')
 
 Page({
-  data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+  data:{
+    goods: [],  //商品
+    categories: [],   //分类
+    activeCategoryId: 0,  //当前分类
+    noticeList: [],  //通知
+    banners: []
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  onLoad(){
+    this.getNotice()  //通知
+    this.getBanners()   //请求Banner位
+    this.loadGoods()  //商品
+  },
+  getNotice(){
+    WXAPI.noticeList({
+      pageSize: 5
+    }).then(res => {
+      this.setData({
+        noticeList: res.data
+      })
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
+  getBanners(){
+    WXAPI.banners({
+      type: 'new'
+    }).then(res => {
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        data: res.data
       })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    })
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  loadGoods(){
+    WXAPI.goods({
+      recommendStatus: 1
+    }).then(res => {
+      this.setData({
+        goods: res.data
+      })
     })
   }
 })

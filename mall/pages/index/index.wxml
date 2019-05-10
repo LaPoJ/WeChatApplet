@@ -1,13 +1,32 @@
-<!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="page__bd">
+    <!-- 搜索 -->
+    <div class="weui-search-bar" id="search_bar">
+      <form class="weui-search-bar__form">
+        <div class="weui-search-bar__box">
+          <i class="weui-icon-search"></i>
+          <input type="search" class="weui-search-bar__input" id="search_input" placeholder="搜索" />
+          <a href="javascript:" class="weui-icon-clear" id="search_clear"></a>
+        </div>
+        <label for="search_input" class="weui-search-bar__label" id="search_text">
+          <i class="weui-icon-search"></i>
+          <span>搜索</span>
+        </label>
+      </form>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
+    </div>
+    <!-- 通知 -->
+    <view wx:if="{{noticeList}}" class="notice">
+      <image class="notice_icon" src="/images/notice.png"></image>
+      <swiper wx:if="{{noticeList}}" class="notice_swiper" vertical="true" autoplay="true" circular="true" interval="3000">
+        <navigator wx:for-items="{{noticeList.dataList}}" wx:key="id" url="/pages/notice/show?id={{item.id}}" open-type="navigate">
+          <swiper-item>
+            <view class="notice_itemr">{{item.title}}</view>
+          </swiper-item>
+        </navigator>
+      </swiper>
+    </view>
+    <!-- 分类 -->
+    <!-- 商品列表 -->
   </view>
 </view>
