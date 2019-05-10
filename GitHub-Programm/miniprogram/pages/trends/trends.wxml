@@ -1,0 +1,5 @@
+<view class="treds">
+  <trend repo="{{ item }}" wx:for="{{ trends }}" wx:key="{{ index }}">
+
+  </trend>
+</view>
