@@ -1,10 +1,12 @@
 {
   "pages": [
-    "pages/trends/trends",
     "pages/news/news",
+    "pages/trends/trends",
     "pages/issues/issues",
     "pages/pulls/pulls",
-    "pages/me/me"
+    "pages/me/me",
+    "components/feeds/feeds",
+    "pages/login/login"
   ],
   "window": {
     "backgroundColor": "#24292e",

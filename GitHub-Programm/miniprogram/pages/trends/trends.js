@@ -2,21 +2,63 @@
 
 const github = require('../../api/github.js')
 
+const timeRanges = [
+  { label: 'Daily', value: 'Daily' },
+  { label: 'Weekly', value: 'Weekly' },
+  { label: 'Monthly', value: 'Monthly' }
+]
+
+const languages = [
+  'All',
+  'C', 'CSS', 'C#', 'C++',
+  'Dart', 'Dockerfile',
+  'Erlang',
+  'Gradle', 'Go',
+  'HTML', 'Haskell',
+  'Java', 'JavaScript', 'JSON', 'Julia',
+  'Kotlin',
+  'MATLAB',
+  'Python', 'PHP',
+  'R', 'Ruby', 'Rust',
+  'Shell', 'SQL', 'Swift',
+  'TeX',
+  'Vue'
+].map(it => ({label: it, value: it}))
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    trends: []
-  },
+    since: timeRanges[0],
+    lang: languages[0],
+    trends: [],
+    selectorValues: [  timeRanges, languages ],
+    selectorIndices: [0, 0],
 
+  },
+  changeFilter(event){
+    const selectorIndices = event.detail.value
+    // console.log(selectorIndices);
+    this.setData({
+      selectorIndices,
+      since: timeRanges[selectorIndices[0]],
+      lang: languages[selectorIndices[1]]
+    })
+    wx.startPullDownRefresh()
+
+  },
   reloadData(){
-    github.trendings()
+    const { selectorIndices } = this.data
+    const since = timeRanges[selectorIndices[0]].value.toLowerCase()
+    const language = languages[selectorIndices[1]].value.toLowerCase()
+    github.trendings({ since, language })
       .then( data => {
-        console.log(data);
+        // console.log(data);
         this.setData({
-          trends: data
+          trends: data,
         })
         wx.stopPullDownRefresh()
       })

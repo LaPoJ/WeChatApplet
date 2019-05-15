@@ -1,2 +1,10 @@
-<!--miniprogram/pages/news/news.wxml-->
-<text>miniprogram/pages/news/news.wxml</text>
+<view class="news">
+  <navigator
+    class="login-prompt"
+    url="/pages/login/login"
+    open-type="navigate" wx:if="{{ !isSignedIn }}"
+  >
+    Sign in to see My News
+  </navigator>
+  <activities events="{{ events }}" />
+</view>
