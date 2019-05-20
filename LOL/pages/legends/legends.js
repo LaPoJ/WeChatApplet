@@ -1,3 +1,7 @@
+const app = getApp()
+
+console.log(app.globalData.userInfo)
+
 Page({
   data: {
     legends: [

@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+console.log(app.globalData.userInfo)
 
 Page({
   data: {
@@ -52,13 +53,13 @@ Page({
     })
   },
   bindFreeLengendTap: function(e) {
-    console.log('tapped');
+    // console.log('tapped');
     wx.navigateTo({
       url: '../legends/legends'
     })
   },
   bindBattleListTap: function(e) {
-    console.log(e);
-    console.log('battle');
+    // console.log(e);
+    // console.log('battle');
   }
 })
