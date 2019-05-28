@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="container">
+
+  <!-- 用户 openid -->
+  <view class="userinfo">
+		<button open-type="getUserInfo" class="userinfo-nickname" bindgetuserinfo="onWeixinLogin" wx:if="{{ !isLogin }}">
+      微信授权登录
+    </button>
+    <image wx:if="{{ isLogin }}" class="userinfo-avatar" src="{{ userinfo.avatarUrl }}" mode="aspectFit" binderror="" bindload="">
+
+    </image>
+  </view>
+
+
+  <!-- 上传图片 -->
+
+
+
+  <!-- 操作数据库 -->
+
+
+  <!-- 新建云函数 -->
+
+
+  <!-- 云调用 -->
+
+
+
+</view>
