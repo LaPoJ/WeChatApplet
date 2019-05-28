@@ -20,28 +20,30 @@ Page({
         // 不是结果， 是符合条件的数量
         userInfo.where({
           _openid: res.result.openId
-        }).count().then(res => {
-          if (res.total == 0) {
-            userInfo.add({
-              data: result.detail.userInfo
-            }).then(res => {
-              console.log(res)
-            })
-          }else{
-            // console.log('已经添加过！');
-            wx.navigateTo({
-              url: '/pages/add/add',
-              success: function(e){
-
-              }
-            })
-          }
         })
+          .count()
+          .then(res => {
+            if (res.total == 0) {
+              userInfo.add({
+                data: result.detail.userInfo
+              }).then(res => {
+                console.log(res)
+              })
+            } else {
+              // console.log('已经添加过！');
+              wx.navigateTo({
+                url: '/pages/add/add',
+                success: function (e) {
+
+                }
+              })
+            }
+          })
       }
     })
   },
-  onLoad: function(options){
-    userInfo.get().then( res => {
+  onLoad: function (options) {
+    userInfo.get().then(res => {
       this.setData({
         userList: res.data
       })
